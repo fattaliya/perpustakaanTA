@@ -33,60 +33,54 @@
                                     <label>Judul</label>
                                     <input type="text" name="judul" class="form-control" place_holder="Masukan Judul buku...." value="{{$buku->judul}}">
                                 </div>
-                                {{-- <div class="form-group mb-3">
-                                    <label>Kategori</label>
-                                    <input type="text" name="nama" class="form-control" place_holder="Masukan Judul buku...." value="{{$buku->judul}}">
-                                </div> --}}
                                 <div class="form-group mb-3">
-                                    <label>Pengarang</label>
-                                    <select class="form-control" name="id_pengarang" required>
-                                      <option value="">-- Pilih Pengarang --</option>
-                                      @foreach(\DB::table('pengarang')->get() as $data)
+                                    <label>Kategori</label>
+                                    <select class="form-control" name="id_kategori" required>
+                                      <option value="">-- Pilih Kategori --</option>
+                                      @foreach(\DB::table('kategori')->get() as $data)
                                       <option value="{{$data->id}}">{{$data->nama}}</option>
                                       @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group mb-3">
+                                    <label>Pengarang</label>
+                                    <input type="text" name="pengarang" class="form-control" place_holder="Masukan Tempat Terbit...." value="{{$buku->pengarang}}">
+                                </div>
+                                <div class="form-group mb-3">
                                     <label>Penerbit</label>
-                                    <select class="form-control" name="id_penerbit" required>
-                                      <option value="">-- Pilih Penerbit --</option>
-                                      @foreach(\DB::table('penerbit')->get() as $data)
-                                      <option value="{{$data->id}}">{{$data->nama}}</option>
-                                      @endforeach
-                                    </select>
+                                    <input type="text" name="penerbit" class="form-control" place_holder="Masukan Tempat Terbit...." value="{{$buku->pengarang}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Lokasi</label>
+                                    <input type="text" name="lokasi" class="form-control" place_holder="Masukan Tempat Terbit...." value="{{$buku->lokasi}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>EXP</label>
+                                    <input type="text" name="exp" class="form-control" place_holder="Masukan Tempat Terbit...." value="{{$buku->exp}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>CNB</label>
+                                    <input type="text" name="cnb" class="form-control" place_holder="Masukan Terima Tanggal..." value="{{$buku->cnb}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Asal Buku</label>
+                                    <input type="text" name="asal_buku" class="form-control" place_holder="Masukan Terima Tanggal..." value="{{$buku->asal_buku}}">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Tempat Terbit</label>
                                     <input type="text" name="tempat_terbit" class="form-control" place_holder="Masukan Tempat Terbit...." value="{{$buku->tempat_terbit}}">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label>EXP</label>
-                                    <input type="text" name="exp" class="form-control" place_holder="Masukan exp...." value="{{$buku->exp}}">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label>Rak</label>
-                                    <select class="form-control" name="nomor" required>
-                                      <option value="">-- Pilih Rak --</option>
-                                      @foreach(\DB::table('rak')->get() as $data)
-                                      <option value="{{$data->id}}">{{$data->nomor}}</option>
-                                      @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group mb-3">
                                     <label>Stok</label>
-                                    <input type="text" name="stok" class="form-control" place_holder="Masukan Stok..." value="{{$buku->stok}}">
+                                    <input type="text" name="stok" class="form-control" place_holder="Masukan Id Pengarang...." value="{{$buku->stok}}">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label>CBN</label>
-                                    <input type="text" name="cbn" class="form-control" place_holder="Masukan Terima Tanggal..." value="{{$buku->cbn}}">
+                                    <label>Ketersedian</label>
+                                    <input type="text" name="ketersedian" class="form-control" place_holder="Masukan Terima Tanggal..." value="{{$buku->ketersedian}}">
                                 </div>
-                                {{-- <div class="form-group mb-3">
-                                    <label>Peminjam</label>
-                                    <input type="text" name="peminjaman" class="form-control" place_holder="Masukan Terima Tanggal..." value="{{$buku->peminjaman}}">
-                                </div> --}}
                                 <div class="form-group mb-3">
                                     <label>Foto</label>
-                                    <input type="file" name="foto" class="form-control" place_holder="Masukan Foto...." value="{{$buku->foto}}">
+                                    <input type="file" name="foto" class="form-control" place_holder="Masukan Foto...." value="">
                                 </div>
                                 <br>
                                 <button class="btn btn-success" type="submit">Update Data</button>

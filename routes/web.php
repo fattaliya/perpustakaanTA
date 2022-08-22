@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::get('/template/cari','FrontController@cari');
 
 
- Route::get('/register', 'App\Http\Controllers\RegisterController@create')->middleware('guest');
+ Route::get('/login', 'Auth\LoginController@create')->name('register');
 
 
 Auth::routes();
@@ -101,6 +101,7 @@ Route::post('/admin/data_siswa/create', 'Admin\datasiswaController@create');
 Route::get('/admin/data_siswa/edit/{id}', 'Admin\datasiswaController@edit');
 Route::post('/admin/data_siswa/update/{id}', 'Admin\datasiswaController@update');
 Route::get('/admin/data_siswa/delete/{id}', 'Admin\datasiswaController@delete');
+Route::get('/admin/data_siswa/status_akun/{id}', 'Admin\datasiswaController@status_akun');
 Route::get('/admin/data_siswa/konfirmasi', 'Admin\datasiswaController@konfrimasi');
 Route::get('/admin/data_siswa/detail/{nis}', 'Admin\datasiswaController@detail');
 Route::get('/admin/peminjaman/detail/print_data_siswa', 'Admin\peminjamanController\detail@print_data_siswa');
@@ -125,11 +126,13 @@ Route::get('/admin/buku/print_buku', 'Admin\bukuController@print_buku');
 //Peminjaman
 Route::get('/admin/peminjaman', 'Admin\peminjamanController@read');
 Route::get('/admin/peminjaman/add', 'Admin\peminjamanController@add');
-Route::post('/admin/peminjaman/create', 'Admin\peminjamanController@create');
+Route::get('/admin/peminjaman/create/{id}', 'Admin\peminjamanController@create');
 Route::get('/admin/peminjaman/edit/{id}', 'Admin\peminjamanController@edit');
 Route::post('/admin/peminjaman/update/{id}', 'Admin\peminjamanController@update');
 Route::get('/admin/peminjaman/delete/{id}', 'Admin\peminjamanController@delete');
-Route::get('/admin/peminjaman/print_peminjaman', 'Admin\peminjamanController@print_peminjaman');
+Route::get('/admin/peminjaman/kembali/{id}', 'Admin\peminjamanController@kembali');
+Route::get('/admin/peminjaman/kehilangan/{id}', 'Admin\peminjamanController@kehilangan');
+
 
 
 
@@ -150,7 +153,7 @@ Route::get('/admin/pengembalian/delete/{id}', 'Admin\pengembalianController@dele
     Route::post('/admin/pengembalian/create', 'Admin\pengembalianController@create');
 // });
 
-Route::resource('/admin/transaksi', 'Admin\TransaksiController');
+// Route::resource('/admin/transaksi', 'Admin\TransaksiController');
 Route::get('/laporan/trs', 'LaporanController@transaksi');
 
 //dashboard
@@ -165,10 +168,3 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

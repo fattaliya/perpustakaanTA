@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 class DataSiswa extends Migration
 {
     /**
@@ -15,7 +16,7 @@ class DataSiswa extends Migration
     {
         Schema::create('data_siswa', function (Blueprint $table) {
             $table->id();
-            $table->string('nis',20);
+            $table->string('nis',50);
             $table->string('nama_siswa',50);
             $table->string('status',50);
             // $table->string('id_kelas');

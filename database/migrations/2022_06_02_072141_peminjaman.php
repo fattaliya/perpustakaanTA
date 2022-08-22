@@ -15,11 +15,14 @@ class Peminjaman extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_siswa');
-            $table->string('tanggal');
-            $table->string('id_buku');
-            $table->string('nis');
-            $table->string('jumlah');
+            $table->string('id_siswa',10);
+            $table->date('tanggal_pinjam',20);
+            $table->date('tanggal_kembali',20);
+            $table->date('tanggal_pengembalian',20)->nullable();
+            $table->string('id_buku',10);
+            $table->string('status_buku',20)->nullable();
+            $table->string('status_peminjaman')->nullable();
+
             $table->timestamps();
         });
     }

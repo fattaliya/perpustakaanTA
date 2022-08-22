@@ -43,13 +43,11 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Peminjam </th>
-                                    <th>Tanggal</th>
                                     <th>BUKU</th>
-                                    <th>NIS</th>
-                                    {{-- <th>Jumlah Hari Telat</th> --}}
-                                    <th>Total Denda</th>
-                                    <th>STATUS BUKU</th>
-                                    <th>Jumlah Buku DiKembalikan</th>
+                                    <th>Tanggal Pinjam </th>
+                                    <th>Tanggal Pinjam </th>
+                                    <th>Tanggal Pengembalian </th>
+                                    <th>Denda</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -68,17 +66,19 @@
 
                                     <td>{{$no++}}</td>
                                     <td>{{$data->nama_siswa}}</td>
-                                    <td>{{$data->tanggal}}</td>
-                                    <td>{{DB::table('buku')->where('id',$data->id_buku)->value('judul')}}</td>
-                                    <td>{{$data->nis}}</td>
+                                    <td>{{$data->tanggal_pinjam}}</td>
+                                    <td>{{$data->tanggal_kembali}}</td>
+                                    <td>{{$data->tanggal_pengembalian}}</td>
+
                                     {{-- <td>
                                       {{$data->hari_denda}}
                                     </td> --}}
-                                    <td>
+                                    {{-- <td>
                                         {{($data->hari_denda*$total)}}
                                       </td>
                                       <td>{{$data->jumlah}}</td>
-                                    <td>Telat - {{$data->hari_denda}} Hari</td>
+                                    <td>Telat - {{$data->hari_denda}} Hari</td> --}}
+                                    
                                     <td class="text-center">
                                     <form action="/admin/pengembalian/delete/{{$data->id}}" method="get" class="-inline" onsubmit="return confirm('Yakin anda mau menghapus')">
                                       <form method="POST"><form method="POST">

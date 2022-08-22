@@ -31,10 +31,11 @@
                                     <th>Nama</th>
                                     <th>Denda</th>
                                     <th>Satuan</th>
-                                    <th>Nominal<th>
+                                    <th>Nominal</th>
                                     <th>Kehilangan</th>
                                     <th>Jumlah</th>
                                     <th>Action</th>
+
                                 </tr>
                             </thead>
                                 <?php $no = 1; ?>
@@ -44,10 +45,10 @@
                                     <td>{{$data->nama}}</td>
                                     <td>{{$data->denda}} </td>
                                     <td>{{$data->satuan_denda}}</td>
-                                    <td>{{$data->nominal * 1000 }}</td>
+                                    <td>{{$data->nominal}}</td>
                                     <td>{{$data->kehilangan}}</td>
-                                    <td>{{$data->jumlah }}</td>
-                                    <td class="text-center">
+                                    <td>{{$data->jumlah}}</td>
+                                    <td>
                                         <a href="/admin/kategori/edit/{{$data->id}}" class="btn btn-sm btn-success"><i class="bx bx-pencil"></i></a>
                                         <form action="/admin/kategori/delete/{{$data->id}}" method="get" class="-inline" onsubmit="return confirm('Yakin anda mau menghapus')">
                                             <form method="POST"><form method="POST">

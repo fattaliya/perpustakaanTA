@@ -37,6 +37,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>nis</th>
+                                    <th>Status</th>
                                     <th>Nama</th>
                                     {{-- <th>kelas</th> --}}
                                     <th>Jenis Kelamin</th>
@@ -53,15 +54,24 @@
                                 //   $kelas = DB::table('kelas')->find($data->id_kelas);
 
                                 ?>
+
                                 <tr>
+
                                     <td>{{$no++}}</td>
+                                    <td>
+                                        @if($data->status_akun == 1)
+                                            <a href="{{url('/admin/data_siswa/status_akun/' .$data->id)}}" class="btn btn-sm btn-danger">Non-Aktifkan</a>
+                                        @else
+                                        <a href="{{url('/admin/data_siswa/status_akun/' .$data->id)}}" class="btn btn-sm btn-success">Aktifkan</a>
+                                        @endif
+                                </td>
                                     <td>{{$data->nis}}</td>
                                     <td>{{$data->nama_siswa}}</td>
                                     {{-- <td>{{$kelas->nama}}</td> --}}
                                     <td>{{$data->jenis_kelamin}}</td>
                                     <td>{{$data->no_wa}}</td>
                                     <td>{{$data->status}}</td>
-                                    <td>{{$data->status_akun}}</td>
+                                    <td><label class="label label-success"> {{ ($data->status_akun == 1) ? 'Aktif' : 'Tidak Aktif'}}</label></td>
                                     <td>
                                       <img src="/foto/{{$data->foto}}" alt="{{$data->foto}}" width="200"/>
                                       </td>

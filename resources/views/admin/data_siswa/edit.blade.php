@@ -54,10 +54,10 @@
                                     <label>Status Akun</label>
                                     <input type="text" name="status_akun" class="form-control" place_holder="Masukan Nama data_siswa...." value="{{$data_siswa->status_akun}}">
                                 </div>
-                                <div class="form-group mb-3">
+                                {{-- <div class="form-group mb-3">
                                     <label>Alamat</label>
                                     <textarea type="text" name="alamat" class="form-control" cols="30" rows="5" placeholder="Pesan" value="{{$data_siswa->alamat}}"></textarea>
-                                </div>
+                                </div> --}}
                                 <div class="form-group mb-3">
                                   <label>Foto</label>
                                   <input type="file" name="foto" class="form-control" place_holder="Masukan Foto...." value="{{$data_siswa->foto}}">

@@ -36,15 +36,28 @@
                                     <label>Nominal Denda</label>
                                     <input type="text" name="nominal" class="form-control" place_holder="Masukan Nominal...." value="">
                                 </div>
-                                <div class="form-group mb-3">
+                                {{-- <div class="form-group mb-3">
                                     <label>Kehilangan</label>
                                     <input type="text" name="kehilangan" class="form-control" place_holder="Masukan Kehilangan...." value="">
+                                </div> --}}
+                                <div class="form-group mb-3">
+                                    <label>Kehilangan</label>
+                                <select class="form-control" name="kehilangan" id="kehilangan">
+                                    <option value="Uang">Uang</option>
+                                    <option value="Buku">Buku</option>
+                                </select>
                                 </div>
+                                @if (Request->old('kehilangan') == 'Buku')
                                 <div class="form-group mb-3">
                                     <label>Jumlah Denda</label>
                                     <input type="text" name="jumlah" class="form-control" place_holder="Masukan Jumlah...." value="">
                                 </div>
-
+                                {{-- @else --}}
+                                {{-- <div class="form-group mb-3">
+                                    <label>Jumlah Denda</label>
+                                    <input type="text" name="jumlah" class="form-control" place_holder="Masukan Jumlah...." value="" >
+                                </div> --}}
+                                @endif
                                <br>
                                 <button class="btn btn-success" type="submit">Tambah Data</button>
                           </form>

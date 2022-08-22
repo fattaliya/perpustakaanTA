@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Register extends Migration
+class Kehilangan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class Register extends Migration
      */
     public function up()
     {
-        Schema::create('register', function (Blueprint $table) {
+        Schema::create('kehilangan', function (Blueprint $table) {
             $table->id();
-            $table->string('nis');
-            $table->string('nama');
-            $table->string('jenis_kelamin');
-            $table->string('no_wa');
-            $table->string('alamat');
+            $table->string('keterangan')->nullable;
+            $table->string('id_penganti')->nullable;
+            $table->string('id_peminjaman')->nullable;
+
+
             $table->timestamps();
         });
-
     }
 
     /**
@@ -32,6 +31,6 @@ class Register extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('register');
+        Schema::dropIfExists('kehilangan');
     }
 }

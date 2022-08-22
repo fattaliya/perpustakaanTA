@@ -1,4 +1,6 @@
-@extends('admin.layouts.app', [
+
+
+\@extends('admin.layouts.app', [
     'activePage' => 'master',
   ])
 @section('content')
@@ -29,11 +31,14 @@
                          <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tanggal</th>
-                                    <th>BUKU</th>
                                     <th>Nama Peminjam</th>
-                                    <th>NIS</th>
-                                    <th>Jumlah</th>
+                                    <th>BUKU</th>
+                                    <th>Tanggal Pinjam</th>
+                                    <th>Tanggal Kembali</th>
+                                    <th>Tanggal Pengembalian</th>
+
+                                    {{-- <th>Status Buku</th>
+                                    <th>Status Peminjaman</th> --}}
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -44,21 +49,83 @@
                                 ?>
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>{{$data->tanggal}}</td>
+                                    {{-- <td>{{$data->id_siswa}}</td> --}}
+                                    <td>{{DB::table('data_siswa')->where('id',$data->id)->value('nama_siswa')}}</td>
                                     <td>{{DB::table('buku')->where('id',$data->id_buku)->value('judul')}}</td>
-                                    <td>{{$data->nama_siswa}}</td>
-                                    <td>{{$data->nis}}</td>
-                                    <td>{{$data->jumlah}}
-                                  <td class="text-center">
-                                        <a href="/admin/peminjaman/edit/{{$data->id}}" class="btn btn-sm btn-secondary"><i class="bx bx-pencil"></i></a>
-                                         <form action="/admin/peminjaman/delete/{{$data->id}}" method="get" class="-inline" onsubmit="return confirm('Yakin anda mau menghapus')">
-                                      <form method="POST"><form method="POST">
+                                    <td>{{$data->tanggal_pinjam}}</td>
+                                    <td>{{$data->tanggal_kembali}}</td>
+                                    <td>{{$data->tanggal_pengembalian}}</td>
+                                    {{-- <td>{{$data->status_buku}}</td>
+                                    <td>{{$data->status_peminjaman}} --}}
+
+                                <td class="text-center">
+                                    <a href="/admin/peminjaman/edit/{{$data->id}}" class="btn btn-sm btn-secondary"><i class="bx bx-pencil"></i></a><br> <br>
+                                    <a href="/admin/peminjaman/kehilangan/{{$data->id}}" class="btn btn-sm btn-secondary"><i class="bx bx-bell-minus"></i></a><br><br>
+
+
+                                    {{-- <form action="/admin/peminjaman/delete/{{$data->id}}" method="get" class="-inline" onsubmit="return confirm('Yakin anda mau menghapus')">
+                                      <form method="POST">
                                         @csrf
                                         <button class="btn btn-danger btn-sm">
                                         <i class="bx bx-trash"></i>
                                         </button>
+                                        <br>
                                       </form>
+                                    </form> --}}
+
+                                {{-- <form action="/admin/peminjaman/kehilangan/{{$data->id}}" method="get" class="-inline" onsubmit="return confirm('apakah buku hilang')">
+                                         <form method="POST">
+                                          @csrf
+                                          <button class="btn btn-danger btn-sm">
+                                            Buku Hilang
+                                          </button>
+                                          <br>
+                                        </form>
+                                      </form>
+                                <br> --}}
+
+
+
+                                @if(!is_null($data->tanggal_pengembalian))
+
+                                {{-- <a href="/admin/peminjaman/kembali/{{$data->id}}" method="get" class="-inline"~ onclick="return confirm('apakah buku sudah sesuai');" > --}}
+                                    <form method="POST">
+                                        @csrf
+
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" disabled>Sudah Kembalikan</button>
+
+                                    </form>
+                                    </a>
+                                @else
+                                    <a href="/admin/peminjaman/kembali/{{$data->id}}" method="get"class="-inline"~ onclick="return confirm('apakah buku sudah sesuai');" >
+                                        <form method="POST">
+                                            @csrf
+                                        <button type="button" class="btn btn-outline-info btn-sm"> Belum  Kembalikan</button>
+                                        </form>
+                                    </a>
+
+                                @endif
+
+
+                                {{-- <a href="/admin/peminjaman/hilang/{{$data->id}}" class="btn btn-sm btn-secondary"><i class="bx bx-pencil"></i></a> --}}
+
+
+                                    {{-- @if ($data->tanggal_kembali <= date('h:i:s a'))
+                                    <form action="/admin/peminjaman/delete/{{$data->id}}" method="get" class="-inline" onsubmit="return confirm('apakah buku sudah sesuai')">
+
+                                        <form method="POST">
+                                          @csrf
+                                          <button class="btn btn-primary btn-sm">
+                                          <i class="bx bx-trash"></i>
+                                          </button>
+                                          <br>
+                                        </form>
+                                      </form>
+                                        @endif --}}
+
                                     </td>
+
+                                </td>
                                 </tr>
                                 @endforeach
                             </table>

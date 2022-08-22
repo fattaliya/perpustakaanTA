@@ -15,15 +15,8 @@ class Pengembalian extends Migration
     {
         Schema::create('pengembalian', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_siswa');
-            $table->string('tanggal');
-            $table->string('id_buku');
-            $table->string('nis');
-            $table->string('keterangan');
-            $table->string('id_denda');
-            $table->string('jumlah');
-            $table->string('status_buku');
-
+            $table->string('id_peminjaman');
+            
             $table->timestamps();
         });
     }

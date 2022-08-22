@@ -42,15 +42,7 @@
                                       @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label>NIS Peminjam</label>
-                                    <select class="form-control" name="nis" required>
-                                    <option value="">-- Pilih NIS --</option>
-                                      @foreach(\DB::table('data_siswa')->get() as $data)
-                                      <option value="{{$data->nis}}">{{$data->nis}}</option>
-                                      @endforeach
-                                    </select>
-                                </div>
+                               
                                 <div class="form-group mb-3">
                                     <label>Jumlah Buku Dikembalikan</label>
                                     <input type="text" name="jumlah" class="form-control" place_holder="Masukan n...." value="">

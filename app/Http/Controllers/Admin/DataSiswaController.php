@@ -6,23 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\WablasTrait;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Auth;
 use PDF;
+use App\Data_siswa;
+
 
 class DataSiswaController extends Controller
 {
     public function read(){
         $data_siswa = DB::table('data_siswa')->orderBy('id','DESC')->paginate(10);
-
-
         return view('admin.data_siswa.index',['data_siswa'=>$data_siswa]);
     }
 
-    public function index()
-    {
-        return view('form_send');
-    }
-
+    
     public function add(){
         $kelas = DB::table('kelas')->orderBy('id','DESC')->get();
     	return view('admin.data_siswa.tambah',['kelas'=>$kelas]);
@@ -66,18 +63,49 @@ class DataSiswaController extends Controller
         }else{
             $name = 'tidak ada file.png';
         }
-        DB::table('data_siswa')->insert([
-            'nis' => $request->nis,
-            'nama_siswa' => $request->nama_siswa,
-            // 'id_kelas' => $request->id_kelas,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'status' => $request->status,
-            'status_akun' =>"Belum Aktif",
-            'foto' => $name
+        // DB::table('data_siswa')->insert([
+        //     'nis' => $request->nis,
+        //     'nama_siswa' => $request->nama_siswa,
+        //     // 'id_kelas' => $request->id_kelas,
+        //     'jenis_kelamin' => $request->jenis_kelamin,
+        //     'status' => $request->status,
+        //     'no_wa' =>$request->no_wa,
+        //     'status_akun' =>"Belum Aktif",
+        //     'foto' => $name
+        // ]);
+    //     dd($request->nama_siswa,
+    //     $request->nis,
+    //     $request->jenis_kelamin,
+    //     $request->status,
+    //     $request->no_wa
+    // );die();
+    $data = data_siswa::create([
+        'nis' => $request['nis'],
+        'nama_siswa' =>$request['nama_siswa'],
+        'jenis_kelamin' => $request['jenis_kelamin'],
+        'status' => $request['status'],
+        'no_wa' => $request['no_wa'],
+        // 'status_akun' =>$request->status_akun,
+        'foto' => $name
+    ]);
 
-        ]);
+        //  $login = DB::table('data_siswa')->insert([
+        //         'nis' => $request->nis,
+        //         'nama_siswa' => $request->nama_siswa,
+        //         // 'id_kelas' => $request->id_kelas,
+        //         'jenis_kelamin' => $request->jenis_kelamin,
+        //         'status' => $request->status,
+        //         'no_wa' =>$request->no_wa,
+        //         'status_akun' =>"Belum Aktif",
+        //         'foto' => $name
 
-        return redirect('/admin/data_siswa')->with("success","Data Berhasil Ditambah !");
+        // ]);
+        // dd($data);die();
+        if($data){
+            return redirect('/admin/data_siswa')->withSuccess('success','Data Berhasil Ditambah !');
+
+
+        }
     }
 
 
@@ -91,9 +119,8 @@ class DataSiswaController extends Controller
     public function edit($id){
         $data_siswa= DB::table('data_siswa')->where('id',$id)->first();
 
-        $kelas = DB::table('kelas')->find($data_siswa->id_kelas);
-        $kelasAll = DB::table('kelas')->where('id','!=',$kelas->id)->orderBy('id','DESC')->get();
-        return view('admin.data_siswa.edit',['data_siswa'=>$data_siswa,'kelas'=>$kelas,'kelasAll'=>$kelasAll]);
+
+        return view('admin.data_siswa.edit',['data_siswa'=>$data_siswa]);
     }
 
     public function update(Request $request, $id) {
@@ -114,7 +141,7 @@ class DataSiswaController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'no_wa' =>$request->no_wa,
             'status' => $request->status,
-            'status_akun' =>"Belum Aktif",
+            // 'status_akun' =>$request->status_akun,
             'foto' => $name
         ]);
         return redirect('/admin/data_siswa')->with("success","Data Berhasil Diupdate !");
@@ -128,13 +155,34 @@ class DataSiswaController extends Controller
         return redirect('/admin/data_siswa')->with("success","Data Berhasil Didelete !");
     }
 
-    // public function konfirmasi($id)
-    // {
-    //     $data_siswa= DB::table('data_siswa')->where('id',$id)->first();
-    //     DB::table('data_siswa')->where('id',$id)->konfirmasi();
+    public function konfirmasi($id)
+    {
+        $data_siswa= DB::table('data_siswa')->where('no_wa',$no_wa)->first();
+        DB::table('data_siswa')->where('no_wa',$id)->konfirmasi();
 
-    //     return redirect('/admin/data_siswa')->with("success","konfirmasi !");
-    // }
+        return redirect('/admin/data_siswa')->with("success","konfirmasi !");
+    }
 
 
+    public function status_akun($id)
+    {
+        $data_siswa= DB::table('data_siswa')->where('id',$id)->first();
+
+        $status_sekarang = $data_siswa->status_akun;
+
+        if($status_sekarang == 1){
+            DB::table('data_siswa')->where('id',$id)->update([
+                'status_akun' =>0
+            ]);
+        }
+        else{
+        DB::table('data_siswa')->where('id',$id)->update([
+            'status_akun' =>1
+        ]);
+        }
+        Session::flash('sukses', "status berhasil di ubah");
+
+        return redirect('/admin/data_siswa');
+    }
 }
+

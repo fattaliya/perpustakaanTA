@@ -21,8 +21,21 @@
                           <form action="/admin/peminjaman/update/{{$peminjaman->id}}" method="POST">
                                 @csrf
                                 <div class="form-group mb-3">
-                                    <label>Tanggal</label>
-                                    <input type="date" name="tanggal" class="form-control" place_holder="Masukan  Tanggal...." value="{{$peminjaman->tanggal}}">
+                                    <label>Nama Peminjam</label>
+                                    <select class="form-control" name="id_siswa" required>
+                                    <option value="">-- Pilih Siswa --</option>
+                                     @foreach(\DB::table('data_siswa')->get() as $data)
+                                      <option value="{{$data->id}}">{{$data->nama_siswa}}</option>
+                                      @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Tanggal Pinjam</label>
+                                    <input type="date" name="tanggal_pinjam" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$peminjaman->tanggal_pinjam}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Tanggal Kembali</label>
+                                    <input type="date" name="tanggal_kembali" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$peminjaman->tanggal_kembali}}">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Buku</label>
@@ -33,28 +46,7 @@
                                       @endforeach
                                     </select>
                                 </div>
-                                     <div class="form-group mb-3">
-                                    <label>Nama Peminjam</label>
-                                    <select class="form-control" name="nama_siswa" required>
-                                      {{-- <option value="{{$data->nama_siswa}}">{{$data->nama_siswa}}</option> --}}
-                                      @foreach($siswaAll as $data)
-                                      <option value="{{$data->nama_siswa}}">{{$data->nama_siswa}}</option>
-                                      @endforeach
-                                    </select>
-                                   </div>
-                                      <div class="form-group mb-3">
-                                          <label>NIS Peminjam</label>
-                                          <select class="form-control" name="nis" required>
-                                            {{-- <option value="{{$siswa->id}}">{{$siswa->nis}}</option> --}}
-                                            @foreach($siswaAll as $data)
-                                            <option value="{{$data->id}}">{{$data->nis}}</option>
-                                            @endforeach
-                                          </select>
-                                      </div>
-                                      <div class="form-group mb-3">
-                                        <label>Jumlah Yang Dipinjam</label>
-                                        <input type="text" name="jumlah" class="form-control" place_holder="Masukan  Tanggal...." value="{{$peminjaman->jumlah}}">
-                                    </div>
+
                                 <br>
                                 <button class="btn btn-success" type="submit">Update Data</button>
                           </form>

@@ -10,10 +10,7 @@ use DateTime;
 
 class PengembalianController extends Controller
 {
-public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     public function read(){
         $pengembalian = DB::table('pengembalian')->orderBy('id','DESC')->get();

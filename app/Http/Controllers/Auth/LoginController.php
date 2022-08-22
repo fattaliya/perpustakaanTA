@@ -55,23 +55,7 @@ class LoginController extends Controller
             'status_akun' => ['required', 'enum', "Aktif" ,"Belum Aktif"],
         ]);
     }
-    // public function store()
-    // {
-    //     $kumpulan_data = [];
-    //     $data['nis'] = request('nis');
-    //     $data['nama'] = request('nama');
-    //     $data['status'] = request('status');
-    //     $data['jenis_kelamin'] = request('jenis_kelamin');
-    //     $data['no_wa'] = request('no_wa');
-    //     $data['alamat'] = request('alamat');
-    //     $data['secret'] = false;
-    //     $data['retry'] = false;
-    //     $data['isGroup'] = false;
-    //     array_push($kumpulan_data, $data);
-    //     WablasTrait::sendText($kumpulan_data);
-    //     return redirect()->back();
-    // }
-
+    
     /**
      * Create a new user instance after a valid registration.
      *

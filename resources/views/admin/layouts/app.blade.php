@@ -155,10 +155,10 @@
                     <div data-i18n="Container">Data Anggota</div>
                   </a>
 
-                   <a href="/admin/kelas" class="menu-link">
+                   {{-- <a href="/admin/kelas" class="menu-link">
                      <i class="menu-icon tf-icons bx bx-user"></i>
                     <div data-i18n="Container">Kelas</div>
-                  </a>
+                  </a> --}}
 
 
               </ul>
@@ -187,7 +187,7 @@
                     <div data-i18n="Fluid">Kategori</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                {{-- <li class="menu-item">
                   <a href="/admin/penerbit" class="menu-link">
                     <div data-i18n="Without menu">Penerbit</div>
                   </a>
@@ -201,42 +201,41 @@
                   <a href="/admin/rak" class="menu-link">
                     <div data-i18n="Container">Rak</div>
                   </a>
-                </li>
+                </li> --}}
 
                 <li class="menu-item">
-                  <a href="/admin/denda" class="menu-link">
-                    <div data-i18n="Fluid">Denda</div>
+                  <a href="/admin/kehilangan" class="menu-link">
+                    <div data-i18n="Fluid">Data Kehilangan</div>
                   </a>
                 </li>
               </ul>
               </li>
 
 
-            <!-- Cards -->
-            {{-- @endif --}}
-            {{-- <li class="menu-item">
+        <!-- Cards -->
+             {{-- @endif --}}
+            <li class="menu-item">
               <a href="" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-book-alt"></i>
                 <div data-i18n="Layouts">Transaksi</div>
               </a>
 
-              <ul class="menu-sub"> --}}
+              <ul class="menu-sub">
               <li class="menu-item">
                   <a href="/admin/peminjaman" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-book"></i>
                     <div data-i18n="Fluid">Peminjaman</div>
                   </a>
-                </li>
+            </li>
 
-                <li class="menu-item">
+                 <li class="menu-item">
                   <a href="/admin/pengembalian" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-book"></i>
-                    <div data-i18n="Fluid">Pengembalian</div>
+                    <div data-i18n="Fluid">pengembalian</div>
                   </a>
-                </li>
-
-               ~   {{-- </ul>
-              </li> --}}
+             </li
+               </ul>
+              </li>
 
 
 

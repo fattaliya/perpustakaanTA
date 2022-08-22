@@ -127,8 +127,9 @@
                 </a>
               </div>
 
-              {{-- <form action="/admin/data_siswa/create" method="POST"> --}}
-                @csrf
+              <form action="/admin/data_siswa/create" method="POST">
+                {{-- @csrf --}}
+                {{-- dd('jagjkbga') --}}
                 <div class="mb-3">
                     <label for="name" class="form-label">NIS/NIP</label>
                     <input
@@ -160,10 +161,10 @@
                       @endforeach
                     </select> --}}
                 {{-- </div> --}}
-                <div class="form-group mb-3">
+                {{-- <div class="form-group mb-3">
                     <label>Kelas</label>
                     <input type="text" name="id_kelas" class="form-control" place_holder="Masukan Foto...." value="">
-                </div>
+                </div> --}}
                   <div class="form-group mb-3">
                     <label>Jenis Kelamin</label><br>
                     <input type ="radio" name="jenis_kelamin" value="Laki-Laki">Laki-Laki<br>
@@ -193,7 +194,7 @@
                       autofocus
                     />
                   </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="status" class="form-label">Status Akun</label>
                     <input
                       type="text"
@@ -203,11 +204,11 @@
                       placeholder="Enter your status~"
                       autofocus
                     />
-                  </div>
-                  <div class="form-group">
+                  </div> --}}
+                  {{-- <div class="form-group">
                     <label>Alamat</label>
                     <textarea name="alamat" class="form-control" cols="30" rows="5" placeholder="alamat"></textarea>
-                 </div>
+                 </div> --}}
                  <div class="form-group mb-3">
                     <label>Foto</label>
                     <input type="file" name="foto" class="form-control" place_holder="Masukan Foto...." value="">
@@ -220,16 +221,17 @@
 
                     {{-- <button class="btn btn-primary" type="submit" method="get" class="-inline" onsubmit="return confirm('Tunggu Konfirmasi Akun')"> Tambah Data</button> --}}
 
-                    <form action="/admin/data_siswa/" method="get" class="-inline" onsubmit="return confirm('Tunggu konfirmasi aktifasi melalui whatsapp ')">
+                    <form action="/admin/data_siswa" method="get" class="-inline" onsubmit="return confirm('Tunggu konfirmasi aktifasi melalui whatsapp ')">
                         <br>
                         <form method="POST"><form method="POST">
                           @csrf
                           <button class="btn btn-danger btn-sm">
                             Submit
                           </button>
-                </form>
+                            </form>
                         </form>
                 </div>
+              </form>
             </div>
 
             </div>
@@ -241,14 +243,7 @@
 
     <!-- / Content -->
 
-    <div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div>
+
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

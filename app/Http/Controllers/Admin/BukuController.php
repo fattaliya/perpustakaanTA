@@ -86,7 +86,7 @@ class BukuController extends Controller
             'asal_buku' =>$request->asal_buku,
             'stok' => $request->stok,
             'cnb' => $request->cnb,
-            'ketersedian' =>$request->ketersedian,
+            'ketersedian' =>$request->stok,
             'id_kategori'=>$request->id_kategori,
             'foto' => $name
         ]);
@@ -97,16 +97,16 @@ class BukuController extends Controller
     public function edit($id){
         $buku= DB::table('buku')->where('id',$id)->first();
 
-        $pengarang = DB::table('pengarang')->find($buku->id_pengarang);
-        $pengarangAll = DB::table('pengarang')->where('id','!=',$pengarang->id)->orderBy('id','DESC')->get();
+        // $pengarang = DB::table('pengarang')->find($buku->id_pengarang);
+        // $pengarangAll = DB::table('pengarang')->where('id','!=',$pengarang->id)->orderBy('id','DESC')->get();
 
-        $penerbit = DB::table('penerbit')->find($buku->id_penerbit);
-        $penerbitAll = DB::table('penerbit')->where('id','!=',$penerbit->id)->orderBy('id','DESC')->get();
+        $kategori = DB::table('kategori')->find($buku->id_kategori);
+        $kategoriAll = DB::table('kategori')->where('id','!=',$kategori->id)->orderBy('id','DESC')->get();
 
-        $rak = DB::table('rak')->find($buku->id_rak);
-        $rakAll = DB::table('rak')->where('id','!=',$rak->id)->orderBy('id','DESC')->get();
-        return view('admin.buku.edit',['buku'=>$buku,'pengarang'=>$pengarang,'penerbit'=>$penerbit,'rak'=>$rak,'pengarangAll'=>$pengarangAll,
-                                        'penerbitAll'=>$penerbitAll,'rakAll'=>$rakAll]);
+        // $rak = DB::table('rak')->find($buku->id_rak);
+        // $rakAll = DB::table('rak')->where('id','!=',$rak->id)->orderBy('id','DESC')->get();
+        return view('admin.buku.edit',['buku'=>$buku,'kategori'=>$kategori,
+                                        'kategoriAll'=>$kategoriAll]);
     }
 
     public function update(Request $request, $id) {
@@ -130,7 +130,7 @@ class BukuController extends Controller
             'lokasi' => $request->lokasi,
             'tempat_terbit' => $request->tempat_terbit,
             'exp' => $request->exp,
-            'cbn' => $request->cbn,
+            'cnb' => $request->cnb,
             'ketersedian' =>$request->ketersedian,
             'asal_buku' =>$request->asal_buku,
             'stok' =>$request->stok,

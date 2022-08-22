@@ -15,8 +15,11 @@ class Denda extends Migration
     {
         Schema::create('denda', function (Blueprint $table) {
             $table->id();
-            $table->string('keterangan');
+            $table->string('id_peminjaman');
             $table->string('Jumlah_denda');
+            $table->string('total_denda');
+            $table->string('terlambat');
+            
             $table->timestamps();
         });
     }
