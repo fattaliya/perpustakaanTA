@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::get('/template/cari','FrontController@cari');
 
 
- Route::get('/login', 'App\Http\Controllers\RegisterController@create')->middleware('guest');
+ Route::get('/register', 'App\Http\Controllers\RegisterController@create')->middleware('guest');
 
 
 Auth::routes();
