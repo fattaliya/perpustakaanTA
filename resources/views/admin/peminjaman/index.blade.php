@@ -1,6 +1,6 @@
 
 
-\@extends('admin.layouts.app', [
+@extends('admin.layouts.app', [
     'activePage' => 'master',
   ])
 @section('content')
@@ -97,12 +97,21 @@
                                     </form>
                                     </a>
                                 @else
+                                @if($data->tanggal_pengembalian>=date("Y-m-d"))
                                     <a href="/admin/peminjaman/kembali/{{$data->id}}" method="get"class="-inline"~ onclick="return confirm('apakah buku sudah sesuai');" >
                                         <form method="POST">
                                             @csrf
                                         <button type="button" class="btn btn-outline-info btn-sm"> Belum  Kembalikan</button>
                                         </form>
                                     </a>
+                                    @else
+                                    <a href="/admin/peminjaman/getdenda/{{$data->id}}">
+                                        <form method="POST">
+                                            @csrf
+                                        <button type="button" class="btn btn-outline-info btn-sm"> Belum  Kembalikan</button>
+                                        </form>
+                                    </a>
+                                    @endif
 
                                 @endif
 

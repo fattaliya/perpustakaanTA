@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\peminjaman;
 use App\Buku;
+use DateTime;
 use App\Data_siswa;
 // use Auth;
 
@@ -173,6 +174,53 @@ public function kehilangan($id){
     $siswaAll = DB::table('data_siswa')->where('nama_siswa','!=',$peminjaman->id_siswa)->orderBy('nama_siswa','ASC')->get();
 
     return view('admin.peminjaman.edit',['peminjaman'=>$peminjaman,'buku'=>$buku,'bukuAll'=>$bukuAll,'siswa'=>$siswa,'siswaAll'=>$siswaAll]);
+}
+public function getdenda($id){
+    // dd("jabkv");die();
+    $peminjaman= DB::table('peminjaman')->where('id',$id)->first();
+    $buku = DB::table('buku')->where('id',$peminjaman->id_buku)->first();
+    $denda = DB::table('kategori')->where('id',$buku->id_kategori)->first();
+    $tgl1 =$peminjaman->tanggal_kembali;
+    $tgl11 = new DateTime($tgl1);
+    $tgl2 = now();
+    // $today = today();
+    $tgl22 = $tgl2->format('Y-m-d');
+    $interval = $tgl11->diff($tgl2);
+    $days = $interval->format('%a');
+    // (int)$selisih = $tgl2-$tgl1;
+    // dd($tgl22);die();
+    return view('admin.peminjaman.denda',['peminjaman'=>$peminjaman,'tgl'=>$tgl22,'buku'=>$buku,'denda'=>$denda,'days'=>$days]);
+
+
+}
+public function denda(Request $request){
+    $bukuada = DB::table('buku')->where('id',$request->id_buku)->first();
+    // foreach ($bukuada as $book){
+        //     $ketersediaan = $book->ketersedian;
+        // }
+        // dd($bukuada->ketersedian);die();
+    DB::table('peminjaman')
+    ->where('id', $request->id)
+    ->update([
+        'tanggal_pengembalian' => $request->tanggal_pengembalian,
+        'status_peminjaman' => "Telah Dikembalikan",
+        'status_buku' => "Telat",
+    ]);
+     DB::table('buku')
+    ->where('id', $request->id_buku)
+    ->update([
+        'ketersedian' => $bukuada->ketersedian + 1,
+    ]);
+    DB::table('denda')
+    ->insert([
+        'id_peminjaman' => $request->id,
+        'jumlah_denda' =>0,
+        'total_denda' => $request->total_denda,
+        'terlambat' => $request->telat,
+    ]);
+        return redirect('/admin/peminjaman')->with("success","Data Berhasil Diupdate !");
+
+
 }
 
 
