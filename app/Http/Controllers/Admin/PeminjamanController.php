@@ -20,6 +20,7 @@ class PeminjamanController extends Controller
 
     public function add(){
         $buku = DB::table('buku')->orderBy('id','DESC')->get();
+        $buku = DB::table('buku')->orderBy('id','DESC')->get();
         $data_siswa = DB::table('data_siswa')->orderBy('id','DESC')->get();
         return view('admin.peminjaman.tambah', ['buku'=>$buku,'data_siswa'=>$data_siswa]);
     }
@@ -41,6 +42,7 @@ class PeminjamanController extends Controller
             'tanggal_pinjam' =>$request['tanggal_pinjam'],
             'tanggal_kembali' => $request['tanggal_kembali'],
             'tanggal_pengembalian' => $request['tanggal_pengembalian'],
+            'id_denda' => $request['id_denda'],
             'id_buku' => $request['id_buku'],
             'status_buku' => $request['status_buku'],
             'status_peminjaman' => $request['status_peminjaman'],
@@ -221,11 +223,30 @@ public function getKehilangan($id){
     $siswa = DB::table('data_siswa')->where('nama_siswa',$peminjaman->id)->first();
     $siswaAll = DB::table('data_siswa')->where('nama_siswa','!=',$peminjaman->id_siswa)->orderBy('nama_siswa','ASC')->get();
 
-    return view('admin.peminjaman.edit',['peminjaman'=>$peminjaman,'buku'=>$buku,'bukuAll'=>$bukuAll,'siswa'=>$siswa,'siswaAll'=>$siswaAll]);
+    return view('admin.peminjaman.edit',['peminjaman'=>$peminjaman,'buku'=>$buku,'siswa'=>$siswa,'siswaAll'=>$siswaAll]);
 }
 public function kehilangan($id){
 
 }
+
+
+// public function denda($id){
+
+//     $peminjaman= DB::table('peminjaman')->where('id',$id)->first();
+
+//     $buku = DB::table('buku')->find($peminjaman->id_buku);
+//     $bukuAll = DB::table('buku')->where('id','!=',$buku->id)->orderBy('id','DESC')->get();
+
+//     $denda = DB::table('denda')->find($peminjaman->id_denda);
+//     $dendaAll = DB::table('denda')->where('id','!=',$denda->id)->orderBy('id','DESC')->get();
+
+//     $siswa = DB::table('data_siswa')->where('nama_siswa',$peminjaman->id)->first();
+//     $siswaAll = DB::table('data_siswa')->where('nama_siswa','!=',$peminjaman->id_siswa)->orderBy('nama_siswa','ASC')->get();
+
+//     return view('admin.peminjaman.denda',['peminjaman'=>$peminjaman,'buku'=>$buku, 'denda'=>$denda,'bukuAll'=>$bukuAll,'siswa'=>$siswa,'siswaAll'=>$siswaAll, 'dendaAll'=>$dendaAll]);
+// }
+
+
 
 
 }

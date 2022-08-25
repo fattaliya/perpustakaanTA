@@ -20,6 +20,7 @@ class Peminjaman extends Migration
             $table->date('tanggal_kembali',20);
             $table->date('tanggal_pengembalian',20)->nullable();
             $table->string('id_buku',10);
+            $table->string('id_denda',10);
             $table->string('status_buku',20)->nullable();
             $table->string('status_peminjaman')->nullable();
 
