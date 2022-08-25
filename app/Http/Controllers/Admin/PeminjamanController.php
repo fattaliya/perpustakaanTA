@@ -19,8 +19,7 @@ class PeminjamanController extends Controller
     }
 
     public function add(){
-        $buku = DB::table('buku')->orderBy('id','DESC')->get();
-        $buku = DB::table('buku')->orderBy('id','DESC')->get();
+        $buku = buku::whereNotNull('id_kategori')->get();
         $data_siswa = DB::table('data_siswa')->orderBy('id','DESC')->get();
         return view('admin.peminjaman.tambah', ['buku'=>$buku,'data_siswa'=>$data_siswa]);
     }
@@ -34,7 +33,7 @@ class PeminjamanController extends Controller
     public function create(Request $request)
     {
 
-        // dd($request);die();
+        // dd($request->all());die();
 
 
         $data = peminjaman::create([
@@ -42,7 +41,6 @@ class PeminjamanController extends Controller
             'tanggal_pinjam' =>$request['tanggal_pinjam'],
             'tanggal_kembali' => $request['tanggal_kembali'],
             'tanggal_pengembalian' => $request['tanggal_pengembalian'],
-            'id_denda' => $request['id_denda'],
             'id_buku' => $request['id_buku'],
             'status_buku' => $request['status_buku'],
             'status_peminjaman' => $request['status_peminjaman'],
@@ -214,18 +212,78 @@ public function denda(Request $request){
 
 }
 public function getKehilangan($id){
+    // dd($id);die();
 
     $peminjaman= DB::table('peminjaman')->where('id',$id)->first();
     $buku = DB::table('buku')->where('id',$peminjaman->id_buku)->first();
-    $ganti = DB::table('kategori')->whre('id',$buku->id_kategori)->first();
+    $ganti = DB::table('kategori')->where('id',$buku->id_kategori)->first();
+
+    $tgl = now();
+    // $today = today();
+    $tgllapor = $tgl->format('Y-m-d');
 
 
     $siswa = DB::table('data_siswa')->where('nama_siswa',$peminjaman->id)->first();
     $siswaAll = DB::table('data_siswa')->where('nama_siswa','!=',$peminjaman->id_siswa)->orderBy('nama_siswa','ASC')->get();
 
-    return view('admin.peminjaman.edit',['peminjaman'=>$peminjaman,'buku'=>$buku,'siswa'=>$siswa,'siswaAll'=>$siswaAll]);
+    return view('admin.peminjaman.kehilangan',['peminjaman'=>$peminjaman,'buku'=>$buku,'tgllapor'=>$tgllapor,'kategori'=>$ganti]);
 }
-public function kehilangan($id){
+public function kehilangan(Request $request){
+    if ($request->hasFile('foto')) {
+        $foto = $request->file('foto');
+            $name = time() . '.' . $foto->extension();
+            $foto->move(public_path().'/foto/', $name);
+    }else{
+        $name = 'tidak ada file.png';
+    }
+    $bukuada = DB::table('buku')->where('id',$request->id_buku)->first();
+    DB::table('buku')
+    ->where('id', $request->id_buku)
+    ->update([
+        'stok' => $bukuada->stok -1
+    ]);
+    DB::table('peminjaman')
+    ->where('id', $request->id)
+    ->update([
+        'tanggal_pengembalian' => $request->tanggal_lapor,
+        'status_peminjaman' => "Telah Dilaporkan",
+        'status_buku' => "Hilang",
+    ]);
+    if($request->kehilangan == "Buku" ||$request->kehilangan == "buku" ){
+        $insert_pengganti = Buku::create([
+            'nib'=>0,
+            'id_kategori'=>0,
+            'exp'=>0,
+            'cnd'=>0,
+            'foto'=>$name,
+            'terima_tanggal' => $request->tanggal_lapor,
+            'judul' => $request->pengganti,
+            'pengarang' => $request->pengarang,
+            'penerbit' => $request->penerbit,
+            'tempat_terbit' => $request->tempat_terbit,
+            'lokasi' => $request->lokasi,
+            'asal_buku' =>"Ganti Rugi Buku Hilang",
+            'stok' => 1,
+            'ketersedian' =>1,
+        ]);
+        $insert_kehilangan = DB::table('kehilangan')->insert([
+            'keterangan' => $request->alasan,
+            'informasi' =>0,
+            'id_penganti' => $insert_pengganti->id,
+            'id_peminjaman' => $request->id,
+        ]);
+
+    }
+    else if ($request->kehilangan == "Uang" ||$request->kehilangan == "uang"){
+              $insert_kehilangan = DB::table('kehilangan')->insert([
+            'keterangan' => $request->alasan,
+            'informasi' =>$request->pengganti,
+            'id_penganti' =>0,
+            'id_peminjaman' => $request->id,
+        ]);
+
+    }
+    return redirect('/admin/peminjaman')->with("success","Data Berhasil Diupdate !");
 
 }
 

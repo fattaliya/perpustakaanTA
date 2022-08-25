@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Satuan Denda</label>
-                                    <input type="text" name="satuan_denda" class="form-control" place_holder="Masukan Satuan...." value="">
+                                    <input type="text" name="satuan_denda" class="form-control" place_holder="Masukan Satuan...." value="Per Hari">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Nominal Denda</label>
