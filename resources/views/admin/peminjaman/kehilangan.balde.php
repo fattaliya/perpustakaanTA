@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                           <hr>
-                          <form action="/admin/peminjaman/update/{{$peminjaman->id}}" method="POST">
+                          <form action="/admin/peminjaman/kehilangan" method="POST">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label>Nama Peminjam</label>
@@ -28,7 +28,7 @@
                                       <option value="{{$data->id}}">{{$data->nama_siswa}}</option>
                                       @endforeach
                                     </select>
-                                </div>                                                                                                                                  
+                                </div>
                                 <div class="form-group mb-3">
                                     <label>Tanggal Pinjam</label>
                                     <input type="date" name="tanggal_pinjam" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$peminjaman->tanggal_pinjam}}">

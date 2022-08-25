@@ -164,17 +164,6 @@ class PeminjamanController extends Controller
 }
 
 
-public function kehilangan($id){
-
-    $peminjaman= DB::table('peminjaman')->where('id',$id)->first();
-    $buku = DB::table('buku')->find($peminjaman->id_buku);
-    $bukuAll = DB::table('buku')->where('id','!=',$buku->id)->orderBy('id','DESC')->get();
-
-    $siswa = DB::table('data_siswa')->where('nama_siswa',$peminjaman->id)->first();
-    $siswaAll = DB::table('data_siswa')->where('nama_siswa','!=',$peminjaman->id_siswa)->orderBy('nama_siswa','ASC')->get();
-
-    return view('admin.peminjaman.edit',['peminjaman'=>$peminjaman,'buku'=>$buku,'bukuAll'=>$bukuAll,'siswa'=>$siswa,'siswaAll'=>$siswaAll]);
-}
 public function getdenda($id){
     // dd("jabkv");die();
     $peminjaman= DB::table('peminjaman')->where('id',$id)->first();
@@ -220,6 +209,21 @@ public function denda(Request $request){
     ]);
         return redirect('/admin/peminjaman')->with("success","Data Berhasil Diupdate !");
 
+
+}
+public function getKehilangan($id){
+
+    $peminjaman= DB::table('peminjaman')->where('id',$id)->first();
+    $buku = DB::table('buku')->where('id',$peminjaman->id_buku)->first();
+    $ganti = DB::table('kategori')->whre('id',$buku->id_kategori)->first();
+
+
+    $siswa = DB::table('data_siswa')->where('nama_siswa',$peminjaman->id)->first();
+    $siswaAll = DB::table('data_siswa')->where('nama_siswa','!=',$peminjaman->id_siswa)->orderBy('nama_siswa','ASC')->get();
+
+    return view('admin.peminjaman.edit',['peminjaman'=>$peminjaman,'buku'=>$buku,'bukuAll'=>$bukuAll,'siswa'=>$siswa,'siswaAll'=>$siswaAll]);
+}
+public function kehilangan($id){
 
 }
 
