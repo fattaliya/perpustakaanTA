@@ -122,7 +122,6 @@ Route::get('/admin/buku/print_buku', 'Admin\bukuController@print_buku');
 
 
 
-
 //Peminjaman
 Route::get('/admin/peminjaman', 'Admin\peminjamanController@read');
 Route::get('/admin/peminjaman/add', 'Admin\peminjamanController@add');
@@ -132,6 +131,7 @@ Route::post('/admin/peminjaman/update/{id}', 'Admin\peminjamanController@update'
 Route::get('/admin/peminjaman/delete/{id}', 'Admin\peminjamanController@delete');
 Route::get('/admin/peminjaman/kembali/{id}', 'Admin\peminjamanController@kembali');
 Route::get('/admin/peminjaman/kehilangan/{id}', 'Admin\peminjamanController@kehilangan');
+Route::get('/admin/peminjaman/denda/{id}', 'Admin\peminjamanController@denda');
 
 
 

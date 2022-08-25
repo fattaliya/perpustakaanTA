@@ -19,9 +19,11 @@ class DendaController extends Controller
     }
 
     public function create(Request $request){
-        DB::table('denda')->insert([  
-            'keterangan' => $request->keterangan,
-            'jumlah_denda' => $request->jumlah_denda]);
+        DB::table('denda')->insert([
+            'id_peminjaman' => $request->id_peminjaman,
+            'total_denda' => $request->total_denda,
+            'dibayarkan' => $request->dibayarkan,
+            'status' => $request->status]);
 
         return redirect('/admin/denda')->with("success","Data Berhasil Ditambah !");
     }
@@ -35,11 +37,13 @@ class DendaController extends Controller
     }
 
     public function update(Request $request, $id) {
-        DB::table('denda')  
+        DB::table('denda')
             ->where('id', $id)
             ->update([
-            'keterangan' => $request->keterangan,
-            'jumlah_denda' => $request->jumlah_denda]);
+                'id_peminjaman' => $request->id_peminjaman,
+                'total_denda' => $request->total_denda,
+                'dibayarkan' => $request->dibayarkan,
+                'status' => $request->status]);
 
         return redirect('/admin/denda')->with("success","Data Berhasil Diupdate !");
     }

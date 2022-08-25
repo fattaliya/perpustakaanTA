@@ -60,7 +60,9 @@
 
                                 <td class="text-center">
                                     <a href="/admin/peminjaman/edit/{{$data->id}}" class="btn btn-sm btn-secondary"><i class="bx bx-pencil"></i></a><br> <br>
-                                    <a href="/admin/peminjaman/kehilangan/{{$data->id}}" class="btn btn-sm btn-secondary"><i class="bx bx-bell-minus"></i></a><br><br>
+
+                                       <a href="/admin/peminjaman/kehilangan/{{$data->id}}" class="btn btn-sm btn-secondary"><i class="bx bx-bell-minus"></i></a><br><br>
+                                       <a href="/admin/peminjaman/denda/{{$data->id}}" class="btn btn-sm btn-secondary"><i class="bx bx-bell-minus"></i></a><br><br>
 
 
                                     {{-- <form action="/admin/peminjaman/delete/{{$data->id}}" method="get" class="-inline" onsubmit="return confirm('Yakin anda mau menghapus')">

@@ -47,7 +47,6 @@
                                     <option value="Buku">Buku</option>
                                 </select>
                                 </div>
-
                                 
                                 @if (Request->old('kehilangan') == 'Buku')
                                 <div class="form-group mb-3">
