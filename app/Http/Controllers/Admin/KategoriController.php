@@ -19,6 +19,12 @@ class KategoriController extends Controller
     }
 
     public function create(Request $request){
+        $check = $request->all();
+        if($request->kehilangan == "Buku"){
+            $request->jumlah=1;
+        }
+        // dd($request->jumlah);die();
+
         DB::table('kategori')->insert([
             'nama' => $request->nama,
             'denda' => $request->denda,

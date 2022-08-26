@@ -1,3 +1,5 @@
+
+
 @extends('admin.layouts.app', [
     'activePage' => 'master',
   ])
@@ -48,7 +50,7 @@
                                 <tr>
                                     <td>{{$no++}}</td>
                                     {{-- <td>{{$data->id_siswa}}</td> --}}
-                                    <td>{{DB::table('data_siswa')->where('id',$data->id)->where('status_akun',1)->value('nama_siswa')}}</td>
+                                    <td>{{DB::table('data_siswa')->where('id',$data->id_siswa)->value('nama_siswa')}}</td>
                                     <td>{{DB::table('buku')->where('id',$data->id_buku)->value('judul')}}</td>
                                     <td>{{$data->tanggal_pinjam}}</td>
                                     <td>{{$data->tanggal_kembali}}</td>
@@ -90,7 +92,7 @@
                                     <form method="POST">
                                         @csrf
 
-                                        <button type="button" class="btn btn-outline-secondary btn-sm" disabled>Sudah Kembalikan</button>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" disabled>{{$data->status_peminjaman}}</button>
 
                                     </form>
                                     </a>

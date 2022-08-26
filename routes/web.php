@@ -137,9 +137,9 @@ Route::get('/admin/peminjaman/delete/{id}', 'Admin\peminjamanController@delete')
 Route::get('/admin/peminjaman/kembali/{id}', 'Admin\peminjamanController@kembali');
 
 Route::get('/admin/peminjaman/getdenda/{id}', 'Admin\peminjamanController@getdenda');
-// Route::post('/admin/peminjaman/denda', 'Admin\peminjamanController@denda');
+Route::post('/admin/peminjaman/denda', 'Admin\peminjamanController@denda');
 Route::get('/admin/peminjaman/getKehilangan/{id}', 'Admin\peminjamanController@getKehilangan');
-Route::get('/admin/peminjaman/kehilangan/{id}', 'Admin\peminjamanController@Kehilangan');
+Route::post('/admin/peminjaman/kehilangan', 'Admin\peminjamanController@Kehilangan');
 
 
 
