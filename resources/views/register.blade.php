@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -124,13 +125,23 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="text  text-center text-uppercase app-brand-text demo menu-text fw-bolder ms-1">SELAMAT DATANG DI <br>PERPUSTAKAAN
-                    <br> SMK NEGERI 1 BATIPUH</span>
+                  <span class="text  text-center text-uppercase app-brand-text demo menu-text fw-bolder ms-1">REGISTER
                 </a>
               </div>
 
-              <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">
+              <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('register') }}">
                 @csrf
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      name="name"
+                      placeholder="Enter your name"
+                      autofocus
+                    />
+                  </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input
@@ -145,9 +156,7 @@
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="password">Password</label>
-                    <a href="auth-forgot-password-basic.html">
-                      <small>Forgot Password?</small>
-                    </a>
+
                   </div>
                   <div class="input-group input-group-merge">
                     <input
@@ -161,12 +170,30 @@
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
-                <a href="{{ route('register') }}" class="text-center">Register</a>
+
+                <div class="mb-3 form-password-toggle">
+                    <div class="d-flex justify-content-between">
+                      <label class="form-label" for="password-confirm">Password Confirm</label>
+
+                    </div>
+                    <div class="input-group input-group-merge">
+                      <input
+                        type="password"
+                        id="password-confirm"
+                        class="form-control"
+                        name="password_confirmation"
+                        required autocomplete="new-password"
+                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                        aria-describedby="password"
+                      />
+                      <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                    </div>
+                  </div>
 
                    <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                  <button  class="btn btn-primary d-grid w-100" type="submit">Register</button>
                 </div>
-              </form>
+            </form>
 
             </div>
           </div>

@@ -74,20 +74,20 @@
                             <th>No</th>
                             <th>nis</th>
                             <th>Nama</th>
-                            <th>kelas</th>
+                            {{-- <th>kelas</th> --}}
                             <th>Jenis Kelamin</th>
                             <th>Status</th>
                         </tr>
                         <?php $no = 1; ?>
                         @foreach($data_siswa as $data)
                         <?php
-                          $kelas = DB::table('kelas')->find($data->id_kelas);
+                        //   $kelas = DB::table('kelas')->find($data->id_kelas);
                         ?>
                         <tr>
                             <td>{{$no++}}</td>
                             <td>{{$data->nis}}</td>
                             <td>{{$data->nama_siswa}}</td>
-                            <td>{{$kelas->nama}}</td>
+                            {{-- <td>{{$data->kelas}}</td> --}}
                             <td>{{$data->jenis_kelamin}}</td>
                             <td>{{$data->status}}</td>
                         </tr>

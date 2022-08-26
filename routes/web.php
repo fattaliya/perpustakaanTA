@@ -25,12 +25,17 @@ Route::get('/', function () {
 Route::get('/template/cari','FrontController@cari');
 
 
- Route::get('/login', 'Auth\LoginController@create')->name('register');
 
+Route::get('/masuk', 'MasukController@create');
 
 Auth::routes();
 
+
+
+
 //Route::group(['middleware' => 'Administrator'], function(){
+
+
 
 Route::get('/admin/dashboard', 'Admin\DashboardController@index');
 Route::get('barcode', 'Admin\DashboardController@barcode');
@@ -130,8 +135,13 @@ Route::get('/admin/peminjaman/edit/{id}', 'Admin\peminjamanController@edit');
 Route::post('/admin/peminjaman/update/{id}', 'Admin\peminjamanController@update');
 Route::get('/admin/peminjaman/delete/{id}', 'Admin\peminjamanController@delete');
 Route::get('/admin/peminjaman/kembali/{id}', 'Admin\peminjamanController@kembali');
-Route::get('/admin/peminjaman/kehilangan/{id}', 'Admin\peminjamanController@kehilangan');
-Route::get('/admin/peminjaman/denda/{id}', 'Admin\peminjamanController@denda');
+
+Route::get('/admin/peminjaman/getdenda/{id}', 'Admin\peminjamanController@getdenda');
+// Route::post('/admin/peminjaman/denda', 'Admin\peminjamanController@denda');
+Route::get('/admin/peminjaman/getKehilangan/{id}', 'Admin\peminjamanController@getKehilangan');
+Route::get('/admin/peminjaman/kehilangan/{id}', 'Admin\peminjamanController@Kehilangan');
+
+
 
 
 
@@ -167,4 +177,3 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-

@@ -48,7 +48,7 @@
                                     <th>Asal Buku</th>
                                     <th>Stok</th>
                                     <th>Ketersedian</th>
-                                    <th>Foto</th>
+                                    {{-- <th>Foto</th> --}}
 
                                     <th class="text-center">Action</th>
                                 </tr>
@@ -77,16 +77,16 @@
                                     <td>{{$data->asal_buku}}</td>
                                     <td>{{$data->stok}}</td>
                                     <td>{{$data->ketersedian}}</td>
-                                    <td>
+                                    {{-- <td>
                                     <img src="/foto/{{$data->foto}}" alt="{{$data->foto}}" width="200"/>
-                                    </td>
+                                    </td> --}}
 
                                     <td class="text-center">
                                         {{-- @if(auth()->user()->level == 'admin') --}}
                                         <a href="/admin/buku/edit/{{$data->id}}" class="btn btn-sm btn-success"><i class="bx bx-pencil"></i></a>
                                         {{-- @endif --}}
                                         {{-- <a href="/admin/buku/detail/{{$data->nib}}" class="btn btn-sm btn-primary"><i class="bx bx-show"></i></a> --}}
-
+<br><br>
                                       <form action="/admin/buku/delete/{{$data->id}}" method="get" class="-inline" onsubmit="return confirm('Yakin anda mau menghapus')">
                                       <form method="POST"><form method="POST">
                                         @csrf

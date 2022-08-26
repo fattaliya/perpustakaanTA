@@ -19,7 +19,7 @@ class DataSiswaController extends Controller
         return view('admin.data_siswa.index',['data_siswa'=>$data_siswa]);
     }
 
-    
+
     public function add(){
         $kelas = DB::table('kelas')->orderBy('id','DESC')->get();
     	return view('admin.data_siswa.tambah',['kelas'=>$kelas]);
@@ -54,39 +54,23 @@ class DataSiswaController extends Controller
 
     public function create(Request $request){
 
-
-
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-                $name = time() . '.' . $foto->extension();
+                $name_file = time() . '.' . $foto->extension();
                 $foto->move(public_path().'/foto/', $name);
         }else{
-            $name = 'tidak ada file.png';
+            $name_file = 'tidak ada file.png';
         }
-        // DB::table('data_siswa')->insert([
-        //     'nis' => $request->nis,
-        //     'nama_siswa' => $request->nama_siswa,
-        //     // 'id_kelas' => $request->id_kelas,
-        //     'jenis_kelamin' => $request->jenis_kelamin,
-        //     'status' => $request->status,
-        //     'no_wa' =>$request->no_wa,
-        //     'status_akun' =>"Belum Aktif",
-        //     'foto' => $name
-        // ]);
-    //     dd($request->nama_siswa,
-    //     $request->nis,
-    //     $request->jenis_kelamin,
-    //     $request->status,
-    //     $request->no_wa
-    // );die();
+
     $data = data_siswa::create([
         'nis' => $request['nis'],
         'nama_siswa' =>$request['nama_siswa'],
         'jenis_kelamin' => $request['jenis_kelamin'],
         'status' => $request['status'],
+        'status_akun' =>$request['status_akun'],
         'no_wa' => $request['no_wa'],
         // 'status_akun' =>$request->status_akun,
-        'foto' => $name
+        'foto' => $name_file
     ]);
 
         //  $login = DB::table('data_siswa')->insert([
@@ -141,7 +125,8 @@ class DataSiswaController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'no_wa' =>$request->no_wa,
             'status' => $request->status,
-            // 'status_akun' =>$request->status_akun,
+
+            'status_akun' =>$request->status_akun,
             'foto' => $name
         ]);
         return redirect('/admin/data_siswa')->with("success","Data Berhasil Diupdate !");
@@ -183,6 +168,27 @@ class DataSiswaController extends Controller
         Session::flash('sukses', "status berhasil di ubah");
 
         return redirect('/admin/data_siswa');
+    }
+
+
+    public function masuk(Request $request){
+
+          $data = data_siswa::create([
+        'nis' => $request['nis'],
+        'nama_siswa' =>$request['nama_siswa'],
+        'jenis_kelamin' => $request['jenis_kelamin'],
+        'status' => $request['status'],
+        'no_wa' => $request['no_wa'],
+        // 'status_akun' =>$request->status_akun,
+        // 'foto' => $name_file
+    ]);
+
+
+        if($data){
+            return redirect('/admin/data_siswa')->withSuccess('success','Data Berhasil Ditambah !');
+
+
+        }
     }
 }
 

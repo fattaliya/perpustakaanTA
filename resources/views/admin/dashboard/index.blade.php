@@ -12,12 +12,12 @@
                     <div class="col-sm-5">
                     <div class="card-body">
 
-                    {{-- @if(Auth::User()->jabatan == "admin")
+                    @if(Auth::User()->jabatan == "admin")
                           <h5 class="card-title text-primary">KO ADMIN 🎉
                           </h5>
                           @elseif(Auth::User()->jabatan == "petugas")
                           <h5 class="card-title text-primary">KO PETUGAS 🎉</h5>
-                          @endif --}}
+                          @endif
                         </div>
 
                     </div>

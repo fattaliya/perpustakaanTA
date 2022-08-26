@@ -47,8 +47,8 @@
                                     <option value="Buku">Buku</option>
                                 </select>
                                 </div>
-                                
-                                @if (Request->old('kehilangan') == 'Buku')
+
+                                {{-- @if (Request->old('kehilangan') == 'Buku') --}}
                                 <div class="form-group mb-3">
                                     <label>Jumlah Denda</label>
                                     <input type="text" name="jumlah" class="form-control" place_holder="Masukan Jumlah...." value="">
@@ -58,7 +58,7 @@
                                     <label>Jumlah Denda</label>
                                     <input type="text" name="jumlah" class="form-control" place_holder="Masukan Jumlah...." value="" >
                                 </div> --}}
-                                @endif
+                                {{-- @endif --}}
                                <br>
                                 <button class="btn btn-success" type="submit">Tambah Data</button>
                           </form>

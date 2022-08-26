@@ -21,7 +21,7 @@
                                     <div class="col card-header text-right">
                                     <form action="/admin/data_siswa/cari" method="GET">
                                         <input type="text" name="cari" placeholder="Cari Nama Anggota .." value="{{ old('cari') }}">
-                                        <input type="submit" value="CARI">
+                                        <input type="submit" value="cari">
                                     </form>
                                 </div>
                             </div>
@@ -36,8 +36,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                     <th>Status</th>
                                     <th>nis</th>
-                                    <th>Status</th>
                                     <th>Nama</th>
                                     {{-- <th>kelas</th> --}}
                                     <th>Jenis Kelamin</th>
@@ -74,7 +74,7 @@
                                     <td><label class="label label-success"> {{ ($data->status_akun == 1) ? 'Aktif' : 'Tidak Aktif'}}</label></td>
                                     <td>
                                       <img src="/foto/{{$data->foto}}" alt="{{$data->foto}}" width="200"/>
-                                      </td>
+                                    </td>
                                     <td class="text-center">
                                         <a href="/admin/data_siswa/edit/{{$data->id}}" class="btn btn-sm btn-success"><i class="bx bx-pencil"></i></a>
                                         <form action="/admin/data_siswa/delete/{{$data->id}}" method="get" class="-inline" onsubmit="return confirm('Yakin anda mau menghapus')">

@@ -33,12 +33,15 @@
 		  <ul class="nav navbar-nav ml-auto">
 			@guest
 			 <li class="nav-item">
-			  <a href="{{url('/data_siswa')}}" class="btn btn-outline-success">Register</a>
+			  <a href="{{url('/masuk')}}" class="btn btn-outline-success">Register </a>
 			</li>
 			{{-- <li class="nav-item">
 			  <a class="nav-link" href="{{url('/register')}}">Register</a>
-			</li> --}}
-
+			</li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('/login')}}">Login</a>
+              </li>
+ --}}
 
 
 
@@ -72,7 +75,7 @@
           <div class="input-group mb-3">
               <input type="text" class="form-control" name="cari" placeholder="Cari Buku" value="{{ old('cari') }}" aria-label="Recipient's username" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button class="btn btn-primary"> Cari </button>
+                <button class="btn btn-primary" href="/admin/kategori"> Cari </button>
               </div>
 
             </div>

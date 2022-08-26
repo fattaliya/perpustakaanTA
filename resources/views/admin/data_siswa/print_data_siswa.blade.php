@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
     <head>
 
@@ -8,9 +7,6 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        
-
-</head>
         <!-- Custom fonts for this template-->
         <link href="{{asset('../admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
         <link
@@ -21,6 +17,7 @@
         <link href="{{asset('../admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
         <link rel="icon" href="{{asset('images/favicon.png')}}">
 
+    </head>
     <body onload="window.print()">
     <div id="content">
 
@@ -29,7 +26,7 @@
       <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h5 mb-2 text-gray-800 font-weight-bold">Data Buku</h1>
+          <h1 class="h5 mb-2 text-gray-800 font-weight-bold">Data Peminjaman</h1>
           @if(session('status'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> {{session('status')}}
@@ -48,64 +45,65 @@
             </div>
           @endif
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-12">
-            <div class="card-body">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <div class="box-body">
                 <div class="table-responsive">
+                <table class="table table-stripped">
+                <table border="1" align="center">
+                    <tr>
 
-                    <div class="box-body">
-                        <div class="table-responsive">
-                        <table class="table table-stripped">
-                        <table border="1" align="center">
-                            <td><center>
-                            <font size="3"><b> SMK NEGERI 1 BATIPUH</font><br>
-                                <font size="3"><i>Alamat : Jl. Raya Padang Panjang – Solok</i></font><br>
-                                <font size="3">Km. 6. 5 Baruah, Kec. Batipuh, Kab. Tanah Datar, Sumbar, 27265 </font><br>
-                            </td>
-                        </tr><br>
+                    <td><center>
+                        <font size="3"><b> SMK NEGERI 1 BATIPUH</font><br>
+                        <font size="3"><i>Alamat : Jl. Raya Padang Panjang – Solok</i></font><br>
+                        <font size="3">Km. 6. 5 Baruah, Kec. Batipuh, Kab. Tanah Datar, Sumbar, 27265 </font><br>
+                    </td>
+                    </tr><br>
+                    <tr>
+                        <td colspan="6"<hr> </td>
+                    </td>
+                    <br>
+                    <br>
+                    <table align="center">
                         <tr>
-                        <td colspan="8"<hr> </td>
+                        <td>Nama</td>
+                        <td> : {{$data_siswa->nama_siswa}}</td>
+                        </tr>
+                        <tr>
+                        <td>NIS</td>
+                        <td> : {{$data_siswa->nis}}</td>
+                        </tr>
+                        <tr>
+                        <td>Jenis Kelamin</td>
+                        <td> : {{$data_siswa->jenis_kelamin}}</td>
+                        </tr>
+                        <tbody>
+                        <tr>
+                        <th>Barcode</th>
+                        <td>:</td>
+                        <td></td>
+                        <td>
+                        <br>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data={{$data_siswa->nis}}">
                         </td>
-                        <br>
-                        <br>
-                        <table align="center">
-                            <tr>
-                            <th>No</th>
-                            <th>Judul</th>
-                            {{-- <th>Kategori</th> --}}
-                            <th>Pengarang</th>
-                            <th>Penerbit</th>
-                            <th>Tempat Terbit</th>
                         </tr>
-                        <?php $no = 1; ?>
-                        @foreach($buku as $data)
-                        <?php
 
-                        //   $pengarang = DB::table('pengarang')->find($data->id_pengarang);
-                        //   $penerbit = DB::table('penerbit')->find($data->id_penerbit);
-                        //   $rak = DB::table('rak')->find($data->id_rak);
-                          //$kategori = DB::table('kategori')->find($data->id_kategori);
-
-                        ?>
-                        <?php $sisa=0;?>
-
-                        <tr>
-                            <td>{{$no++}}</td>
-                            <td>{{$data->judul}}</td>
-                            {{-- <td>{{$data->kategori}}</td> --}}
-                            <td>{{$data->pengarang}}</td>
-                            <td>{{$data->penerbit}}</td>
-                            <td>{{$data->tempat_terbit}}</td>
-                        </tr>
-                        @endforeach
+                              </table>
+                         </table>
                     </table>
-                  </div>
-                </div>
+                 <div class="col-md-10" align="center">
+            </div>
 
-              </div>
-          </div>
+        </div>
+     </div>
 
-      </div>
+     </div>
+</div>
+
+ </div>
       <!-- /.container-fluid -->
   </div>
 <!-- End of Main Content -->

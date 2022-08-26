@@ -77,10 +77,10 @@
                                     <label>Ketersedian</label>
                                     <input type="text" name="ketersedian" class="form-control" place_holder="Masukan Terima Tanggal..." value="">
                                 </div>
-                                <div class="form-group mb-3">
+                                {{-- <div class="form-group mb-3">
                                     <label>Foto</label>
                                     <input type="file" name="foto" class="form-control" place_holder="Masukan Foto...." value="">
-                                </div>
+                                </div> --}}
                                 <br>
                                 <button class="btn btn-primary" type="submit">Tambah Data</button>
                           </form>

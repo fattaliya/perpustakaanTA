@@ -13,33 +13,30 @@ class FrontController extends Controller
      */
     public function index()
     {
-        //
+
+        $categori=Categori::all();
+
+        return view ('index', compact('categori'));
+
+
     }
 
-    public function cari(Request $request){
 
-        $kategori=$request->kategori;
-
-
-        $buku=DB::table('buku');
-        if ($kategori == null) {
-            $buku = buku::where('judul', 'LIKE', "%kategori%")
-            ->orwhere('kategori','LIKE', "kategori")->
-            paginate(5);
-
-        }
-        else{
-
-            $buku = DB::table('buku')->orderBy('id','DESC')->get();
-        }
+    public function cari(Request $request)
+	{
+		// menangkap data pencarian
+		$cari = $request->cari;
 
 
+		$kategori = DB::table('kategori')
+		->where('nama_siswa','like',"%".$cari."%")
+		->paginate();
 
-        // ->where('kategori',$kategori)
-        // ->get();
 
-        return view('admin.buku.index',['buku' => $buku]);
-    }
+		return view('admin.kategori.index',['kategori' => $kategori]);
+
+	}
+
 
     /**
      * Show the form for creating a new resource.

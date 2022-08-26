@@ -49,7 +49,7 @@
                                     <td>{{$data->kehilangan}}</td>
                                     <td>{{$data->jumlah}}</td>
                                     <td>
-                                        <a href="/admin/kategori/edit/{{$data->id}}" class="btn btn-sm btn-success"><i class="bx bx-pencil"></i></a>
+                                        <a href="/admin/kategori/edit/{{$data->id}}" class="btn btn-sm btn-success"><i class="bx bx-pencil"></i></a><br><br>
                                         <form action="/admin/kategori/delete/{{$data->id}}" method="get" class="-inline" onsubmit="return confirm('Yakin anda mau menghapus')">
                                             <form method="POST"><form method="POST">
                                               @csrf

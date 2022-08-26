@@ -11,38 +11,45 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-11">
-                                    <h2 class="card-title text-primary">Edit Denda</h2>
+                                    <h2 class="card-title text-primary">Edit Data peminjaman</h2>
                                 </div>
                                 <div class="col-md-1">
                                     <a href="/admin/peminjaman" class="btn btn-md btn-block btn-primary"><i class="bx bx-left-arrow-alt"></i></a>
                                 </div>
                             </div>
                           <hr>
-                          <form action="/admin/denda/update/{{$denda->id}}" method="POST">
+                          <form action="/admin/peminjaman/denda" method="POST">
                                 @csrf
-
                                 <div class="form-group mb-3">
-                                    <label>Nama Peminjam</label>
-                                    <select class="form-control" name="id_peminjaman" required>
-                                    <option value="">-- Pilih Siswa --</option>
-                                     @foreach(\DB::table('data_siswa')->get() as $data)
-                                      <option value="{{$data->id}}">{{$data->nama_siswa}}</option>
-                                      @endforeach
-                                    </select>
+                                    <input type="text" name="id" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$peminjaman->id}}" hidden>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="text" name="id_buku" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$peminjaman->id_buku}}" hidden>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Judul Buku</label>
+                                    <input type="text" name="buku" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$buku->judul}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Tanggal Pinjam</label>
+                                    <input type="date" name="tanggal_pinjam" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$peminjaman->tanggal_pinjam}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Tanggal Jatuh Tempo</label>
+                                    <input type="date" name="tanggal_kembali" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$peminjaman->tanggal_kembali}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Tanggal Pengembalian</label>
+                                    <input type="date" name="tanggal_pengembalian" class="form-control" value="{{$tgl}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Telat</label>
+                                    <input type="text" name="telat" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$days}} Hari">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Total Denda</label>
-                                    <input type="text" name="" class="total_denda" place_holder="Masukan Judul peminjaman...." value="{{$denda->total_denda}}">
+                                    <input type="text" name="total_denda" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$days*$denda->nominal}}">
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label>Dibayarkan/label>
-                                    <input type="text" name="dibayarkan" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$denda->dibayarkan}}">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label>status</label>
-                                    <input type="text" name="status" class="form-control" place_holder="Masukan Judul peminjaman...." value="{{$denda->status}}">
-                                </div>
-
                                 <br>
                                 <button class="btn btn-success" type="submit">Update Data</button>
                           </form>

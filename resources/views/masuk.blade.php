@@ -27,7 +27,6 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="" />
 
@@ -124,60 +123,122 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="text  text-center text-uppercase app-brand-text demo menu-text fw-bolder ms-1">SELAMAT DATANG DI <br>PERPUSTAKAAN
-                    <br> SMK NEGERI 1 BATIPUH</span>
+                  <span class="text  text-center text-uppercase app-brand-text demo menu-text fw-bolder ms-1">REGISTER </span>
                 </a>
               </div>
 
-              <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">
-                @csrf
+              <form action="/admin/data_siswa/create" method="POST">
+                {{-- @csrf --}}
+                {{-- dd('jagjkbga') --}}
                 <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
+                    <label for="name" class="form-label">NIS/NIP</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nis"
+                      name="nis"
+                      placeholder="Enter your nis"
+                      autofocus
+                    />
+                  </div>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Nama</label>
                   <input
-                    type="email"
+                    type="text"
                     class="form-control"
-                    id="email"
-                    name="email"
-                    placeholder="Enter your email"
+                    id="name"
+                    name="nama_siswa"
+                    placeholder="Enter your name"
                     autofocus
                   />
                 </div>
-                <div class="mb-3 form-password-toggle">
-                  <div class="d-flex justify-content-between">
-                    <label class="form-label" for="password">Password</label>
-                    <a href="auth-forgot-password-basic.html">
-                      <small>Forgot Password?</small>
-                    </a>
-                  </div>
-                  <div class="input-group input-group-merge">
-                    <input
-                      type="password"
-                      id="password"
-                      class="form-control"
-                      name="password"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password"
-                    />
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
+                {{-- <div class="form-group mb-3">
+                    <label>Kelas</label>
+                    {{-- <select class="form-control" name="id_kelas" required>
+                      <option value="">-- Pilih Kelas --</option>
+                      @foreach($kelas as $data)
+                      <option value="{{$data->id}}">{{$data->nama}}</option>
+                      @endforeach
+                    </select> --}}
+                {{-- </div> --}}
+                {{-- <div class="form-group mb-3">
+                    <label>Kelas</label>
+                    <input type="text" name="id_kelas" class="form-control" place_holder="Masukan Foto...." value="">
+                </div> --}}
+                  <div class="form-group mb-3">
+                    <label>Jenis Kelamin</label><br>
+                    <input type ="radio" name="jenis_kelamin" value="Laki-Laki">Laki-Laki<br>
+                    <input type ="radio" name="jenis_kelamin" value="Perempuan">Perempuan<br>
                 </div>
-                <a href="{{ route('register') }}" class="text-center">Register</a>
 
-                   <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status Disekolah</label>
+                    <input
+                      type="status"
+                      class="form-control"
+                      id="status"
+                      name="status"
+                      placeholder="Enter your status~"
+                      autofocus
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="no_wa" class="form-label">No WA</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="no_wa"
+                      name="no_wa"
+                      placeholder="Enter your no_wa"
+                      autofocus
+                    />
+                  </div>
+                {{-- <div class="mb-3">
+                    <label for="status" class="form-label">Status Akun</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="status"
+                      name="status_akun"
+                      placeholder="Enter your status~"
+                      autofocus
+                    />
+                  </div> --}}
+                  {{-- <div class="form-group">
+                    <label>Alamat</label>
+                    <textarea name="alamat" class="form-control" cols="30" rows="5" placeholder="alamat"></textarea>
+                 </div> --}}
+                 {{-- <div class="form-group mb-3">
+                    <label>Foto</label>
+                    <input type="file" name="foto" class="form-control" place_holder="Masukan Foto...." value="">
+                </div> --}}
+                    <br>
+
+                <div class="form-group row mb-0">
+                    {{-- <button class="btn btn-primary" type="submit" method="get" class="-inline" onsubmit="return confirm('Tunggu Konfirmasi Akun')"> Tambah Data</button> --}}
+
+                    <form action="/admin/data_siswa" method="get" class="-inline" onsubmit="return confirm('Tunggu konfirmasi aktifasi melalui whatsapp ')">
+                        <br>
+                        <form method="POST">
+                          @csrf
+                          <button class="btn btn-danger btn-sm">
+                            Submit
+                          </button>
+                            </form>
+                    </form>
+                    </form>
                 </div>
               </form>
-
+            </div>
             </div>
           </div>
-          <!-- /Register -->
         </div>
       </div>
     </div>
 
     <!-- / Content -->
 
-    <div class="buy-now">
 
 
     <!-- Core JS -->

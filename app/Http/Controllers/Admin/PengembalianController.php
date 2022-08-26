@@ -56,7 +56,7 @@ class PengembalianController extends Controller
             }
 
             DB::table('pengembalian')->insert([
-                'nama_siswa' => $request->nama_siswa,
+                // 'nama_siswa' => $request->nama_siswa,
                 'tanggal' => $request->tanggal,
                 'id_buku' => $request->id_buku,
                 'nis' => $request->nis,
